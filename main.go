@@ -8,7 +8,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jedib0t/go-pretty/table"
 	"golang.org/x/sync/semaphore"
 )
 
@@ -24,6 +23,7 @@ func Usage() {
 
 func main() {
 
+	start := time.Now()
 	flag.Usage = Usage
 
 	maxThreads := flag.Int("threads", 50, "# of threads")
@@ -55,9 +55,6 @@ func main() {
 
 	alives := <-doneChan
 
-	t := table.NewWriter()
-	t.SetOutputMirror(os.Stdout)
-
 	for _, tgt := range alives {
 
 		ps := &PortScanner{
@@ -71,7 +68,9 @@ func main() {
 		for _, port := range openPorts[tgt.IP] {
 			colorize(ColorRed, fmt.Sprintf("port %s\topen", strconv.Itoa(port)))
 		}
-		t.AppendSeparator()
 
 	}
+	colorize(ColorYellow,
+		fmt.Sprintf("Scanned %d hosts in %s",
+			len(alives), time.Since(start)))
 }

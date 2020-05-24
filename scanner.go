@@ -1,7 +1,5 @@
 package main
 
-// Credit
-
 import (
 	"context"
 	"fmt"
@@ -37,10 +35,9 @@ func ScanPort(ip string, port int, timeout time.Duration) {
 
 	conn.Close()
 	mu.Lock()
+	defer mu.Unlock()
 	res := append(openPorts[ip], port)
 	openPorts[ip] = res
-	mu.Unlock()
-	// fmt.Println(port, "open")
 }
 
 func (ps *PortScanner) Start(f, l int, timeout time.Duration) {
