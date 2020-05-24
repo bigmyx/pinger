@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/jedib0t/go-pretty/table"
@@ -16,9 +17,19 @@ const (
 	endPort   = 10000
 )
 
+func Usage() {
+	fmt.Printf("Usage: %s [options] <cidr>\noptions:\n", os.Args[0])
+	flag.PrintDefaults()
+}
+
 func main() {
+
+	flag.Usage = Usage
+
+	maxThreads := flag.Int("threads", 50, "# of threads")
 	flag.Parse()
 	if flag.NArg() != 1 {
+		Usage()
 		log.Fatal("missing args")
 	}
 	ipRange := flag.Arg(0)
@@ -28,12 +39,11 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
-	maxThreads := 100
-	pingChan := make(chan string, maxThreads)
+	pingChan := make(chan string, *maxThreads)
 	pongChan := make(chan Pong, len(hosts))
 	doneChan := make(chan []Pong)
 
-	for i := 0; i < maxThreads; i++ {
+	for i := 0; i < *maxThreads; i++ {
 		go ping(pingChan, pongChan)
 	}
 
@@ -56,14 +66,12 @@ func main() {
 		}
 		ps.Start(startPort, endPort, 500*time.Millisecond)
 
-		t.AppendRow(table.Row{tgt.IP, ""})
+		colorize(ColorBlue, fmt.Sprintf("Report for host %s", tgt.IP))
+
 		for _, port := range openPorts[tgt.IP] {
-			t.AppendRow(table.Row{"", port})
+			colorize(ColorRed, fmt.Sprintf("port %s\topen", strconv.Itoa(port)))
 		}
 		t.AppendSeparator()
 
 	}
-	scanned := fmt.Sprintf("found %d hosts\n", len(alives))
-	t.AppendFooter(table.Row{scanned})
-	t.Render()
 }
