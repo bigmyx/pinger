@@ -5,7 +5,7 @@ import (
 )
 
 type Pong struct {
-	Ip    string
+	IP    string
 	Alive bool
 }
 
@@ -19,7 +19,7 @@ func ping(pingChan <-chan string, pongChan chan<- Pong) {
 		} else {
 			alive = true
 		}
-		pongChan <- Pong{Ip: ip, Alive: alive}
+		pongChan <- Pong{IP: ip, Alive: alive}
 	}
 
 }

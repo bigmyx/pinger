@@ -16,11 +16,11 @@ func Hosts(cidr string) ([]string, error) {
 		ips = append(ips, ip.String())
 	}
 
-  if len(ips) > 1 {
-    return ips[1 : len(ips)-1], nil
-  } else {
-    return ips, nil
-  }
+	if len(ips) > 1 {
+		return ips[1 : len(ips)-1], nil
+	}
+
+	return ips, nil
 
 }
 
