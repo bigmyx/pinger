@@ -1,4 +1,5 @@
-[![travis](https://travis-ci.com/bigmyx/pinger.svg?branch=master)](https://travis-ci.com/github/bigmyx/pinger)
+[![Build Status](https://travis-ci.com/bigmyx/pinger.svg?branch=master)](https://travis-ci.com/bigmyx/pinger)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/bigmyx/default%2Fpinger?key=eyJhbGciOiJIUzI1NiJ9.NWVjYjA2Y2M5NDdkYjE5ZDU1Nzk1MmU0.LuAwzjeXQFONvMSpkC98O7qM76gSgS1PmvLslScUJ44&type=cf-1)]( https%3A%2F%2Fg.codefresh.io%2Fpipelines%2Fpinger%2Fbuilds%3Ffilter%3Dtrigger%3Abuild~Build%3Bpipeline%3A5ecb075e13505734c6126241~pinger)
 
 
 # pinger
