@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"golang.org/x/sync/semaphore"
@@ -33,6 +34,12 @@ func main() {
 		log.Fatal("missing args")
 	}
 	ipRange := flag.Arg(0)
+
+	sp := strings.Split(ipRange, "/")
+
+	if len(sp) < 2 {
+		ipRange = ipRange + "/32"
+	}
 
 	hosts, err := Hosts(ipRange)
 	if err != nil {
