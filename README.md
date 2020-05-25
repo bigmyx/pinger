@@ -1,3 +1,6 @@
+[![travis](https://travis-ci.com/bigmyx/pinger.svg?branch=master)](https://travis-ci.com/github/bigmyx/pinger)
+
+
 # pinger
 
 ## Simple Port Scanner
