@@ -66,7 +66,7 @@ func main() {
 
 		ps := &PortScanner{
 			ip:   tgt.IP,
-			lock: semaphore.NewWeighted(Ulimit()),
+			lock: semaphore.NewWeighted(10000),
 		}
 		ps.Start(startPort, endPort, 500*time.Millisecond)
 

@@ -44,3 +44,20 @@ $ ./pinger 10.0.0.0/28
  port 3128      open 
  Scanned 4 hosts in 19.309185694s
 ```
+
+Using docker image
+
+```
+docker run --net host -ti --rm bigmyx/pinger 10.0.0.1   
+ Report for host 10.0.0.1 
+ port 143       open 
+ port 110       open 
+ port 139       open 
+ port 80        open 
+ port 585       open 
+ port 445       open 
+ port 995       open 
+ port 993       open 
+ port 1900      open 
+ Scanned 1 hosts in 1.019478s
+```
