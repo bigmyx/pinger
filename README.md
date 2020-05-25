@@ -24,23 +24,23 @@ Scan a single host:
 Scan IP block:
 
 ```
-./pinger 10.0.0.0/28
+$ ./pinger 10.0.0.0/28
+
  Report for host 10.0.0.11 
  port 80        open 
-...
  port 8080      open 
  port 8090      open 
+ 
  Report for host 10.0.0.1 
  port 80        open 
-...
  port 8080      open 
+ 
  Report for host 10.0.0.12 
  port 80        open 
-... 
- port 9119      open 
+ port 9119      open
+ 
  Report for host 10.0.0.10 
  port 80        open 
-...
  port 3128      open 
  Scanned 4 hosts in 19.309185694s
 ```
